@@ -132,20 +132,20 @@ export default class Board extends Component {
     const { userInputs, AIInputs, result, turn } = this.state;
 
     return (
-        <View style={styles.container}>
-          <TouchableWithoutFeedback onPress={this.handleBoardClick}>
-            <View style={styles.boardContainer}>
-              <View style={styles.line} />
-              <View style={[styles.line, styles.firstLine]} />
-              <View style={[styles.line, styles.secondLine]} />
-              <View style={[styles.line, styles.thirdLine]} />
-              {this.markInput(userInputs, Circle)}
-              {this.markInput(AIInputs, Cross)}
-            </View>
-          </TouchableWithoutFeedback>
-          <Billboard result={result} turn={turn} />
-          <StartButton onPress={this.restartGame} />
-        </View>
+      <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={this.handleBoardClick}>
+          <View style={styles.boardContainer}>
+            <View style={styles.line} />
+            <View style={[styles.line, styles.firstLine]} />
+            <View style={[styles.line, styles.secondLine]} />
+            <View style={[styles.line, styles.thirdLine]} />
+            {this.markInput(userInputs, Circle)}
+            {this.markInput(AIInputs, Cross)}
+          </View>
+        </TouchableWithoutFeedback>
+        <Billboard result={result} turn={turn} />
+        <StartButton onPress={this.restartGame} />
+      </View>
     );
   }
 }
