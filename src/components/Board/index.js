@@ -6,7 +6,8 @@ import {
   View,
 } from 'react-native';
 
-import { AREAS, GAME_RESULT_NO } from '../../constants/game';
+import { AREAS, CENTER_POINTS, GAME_RESULT_NO } from '../../constants/game';
+import Circle from '../Circle';
 
 const Board = () => {
   const [userInputs, setUserInputs] = useState([]);
@@ -15,8 +16,6 @@ const Board = () => {
 
   const handleBoardClick = e => {
     const { locationX, locationY } = e.nativeEvent;
-    console.log({ locationX });
-    console.log({ locationY });
 
     if (result !== GAME_RESULT_NO) {
       return;
@@ -31,6 +30,8 @@ const Board = () => {
         locationY >= location.startY &&
         locationY <= location.endY,
     );
+
+    console.log({ area });
 
     if (area && inputs.every(location => location !== area.id)) {
       setUserInputs([...userInputs, area.id]);
@@ -75,6 +76,14 @@ const Board = () => {
                 },
               ]}
             />
+            {userInputs.map((input, index) => (
+              <Circle
+                key={index}
+                translateX={CENTER_POINTS[input].x}
+                translateY={CENTER_POINTS[input].y}
+                backgroundColor="#005eb8"
+              />
+            ))}
           </View>
         </TouchableWithoutFeedback>
       </View>
