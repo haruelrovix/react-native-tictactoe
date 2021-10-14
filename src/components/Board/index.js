@@ -9,7 +9,6 @@ import {
 import {
   AREAS,
   CENTER_POINTS,
-  CONDITIONS,
   GAME_RESULT_AI,
   GAME_RESULT_NO,
   GAME_RESULT_TIE,
@@ -21,10 +20,7 @@ import Cross from '../Cross';
 import Header from '../Header';
 import StartButton from '../StartButton';
 
-const isWinner = inputs =>
-  CONDITIONS.some(condition =>
-    condition.every(item => inputs.indexOf(item) !== -1),
-  );
+import { isWinner } from '../../utils/checkWinner';
 
 export default class Board extends Component {
   constructor() {
