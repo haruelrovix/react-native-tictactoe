@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 const StartButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={{ color: '#fff' }}>START GAME</Text>
+      <Text style={styles.text}>START GAME</Text>
     </TouchableOpacity>
   );
 };
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#2C528C',
   },
+  text: { color: '#fff' },
 });
 
 export default StartButton;

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -19,6 +18,7 @@ import {
 import Billboard from '../Billboard';
 import Circle from '../Circle';
 import Cross from '../Cross';
+import Header from '../Header';
 import StartButton from '../StartButton';
 
 const isWinner = inputs =>
@@ -143,11 +143,7 @@ export default class Board extends Component {
     return (
       <SafeAreaView>
         <View style={styles.container}>
-          <View style={{ marginBottom: 20 }}>
-            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>
-              Tic Tac Toe!
-            </Text>
-          </View>
+          <Header />
           <TouchableWithoutFeedback onPress={this.handleBoardClick}>
             <View style={styles.boardContainer}>
               <View style={styles.line} />
