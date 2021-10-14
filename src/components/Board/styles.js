@@ -33,6 +33,13 @@ const styles = StyleSheet.create({
     height: 3,
     transform: [{ translateY: 200 }],
   },
+  buttons: isCentered => ({
+    width: 312,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 40,
+    justifyContent: isCentered ? 'center' : 'space-between',
+  }),
 });
 
 export default styles;

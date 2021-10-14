@@ -12,6 +12,7 @@ import {
 import Billboard from '../Billboard';
 import Circle from '../Circle';
 import Cross from '../Cross';
+import SaveButton from '../SaveResult';
 import StartButton from '../StartButton';
 import styles from './styles';
 
@@ -144,7 +145,10 @@ export default class Board extends Component {
           </View>
         </TouchableWithoutFeedback>
         <Billboard result={result} turn={turn} />
-        <StartButton onPress={this.restartGame} />
+        <View style={styles.buttons(result === GAME_RESULT_NO)}>
+          {result !== GAME_RESULT_NO && <SaveButton result={result} />}
+          <StartButton onPress={this.restartGame} />
+        </View>
       </View>
     );
   }

@@ -1,24 +1,28 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
 
 const StartButton = ({ onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={styles.text}>START GAME</Text>
-    </TouchableOpacity>
+    <Button
+      onPress={onPress}
+      buttonStyle={styles.button}
+      containerStyle={styles.container}
+      title="START NEW GAME"
+    />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    marginTop: 20,
     fontSize: 19,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgroundColor: '#2C528C',
   },
-  text: { color: '#fff' },
+  button: {
+    height: 50,
+    width: 182,
+  },
 });
 
 export default StartButton;

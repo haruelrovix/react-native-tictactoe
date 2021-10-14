@@ -10,12 +10,15 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Main from './navigation/Main';
+import Store from './store';
 
 const App = () => {
   return (
     <React.Fragment>
       <NavigationContainer>
-        <Main />
+        <Store>
+          <Main />
+        </Store>
       </NavigationContainer>
     </React.Fragment>
   );
