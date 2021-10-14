@@ -16,6 +16,7 @@ import {
   GAME_RESULT_USER,
 } from '../../constants/game';
 import Circle from '../Circle';
+import Cross from '../Cross';
 
 const isWinner = inputs =>
   CONDITIONS.some(condition =>
@@ -48,10 +49,15 @@ const Board = () => {
 
     if (area && inputs.every(location => location !== area.id)) {
       setUserInputs([...userInputs, area.id]);
+      setTimeout(() => {
+        findTheWinner();
+        runEnemyMove();
+      }, 3);
     }
   };
 
   console.log({ userInputs });
+  console.log({ AIInputs });
 
   const findTheWinner = () => {
     const inputs = [...userInputs, ...AIInputs];
@@ -76,6 +82,36 @@ const Board = () => {
     ) {
       setResult(GAME_RESULT_TIE);
     }
+  };
+
+  const runEnemyMove = () => {
+    if (result !== -1) {
+      return;
+    }
+
+    while (true) {
+      const inputs = [...userInputs, ...AIInputs];
+
+      const randomNumber = Math.round(Math.random() * 8.3)
+      console.log({ randomNumber });
+
+      if (inputs.every(input => input !== randomNumber)) {
+        setAIInputs([...AIInputs, randomNumber]);
+        findTheWinner();
+        break;
+      }
+    }
+  };
+
+  const renderCircle = (inputs, Component) => {
+    return inputs.map((input, index) => (
+      <Component
+        key={index}
+        translateX={CENTER_POINTS[input].x}
+        translateY={CENTER_POINTS[input].y}
+        backgroundColor="#005eb8"
+      />
+    ));
   };
 
   return (
@@ -114,14 +150,8 @@ const Board = () => {
                 },
               ]}
             />
-            {userInputs.map((input, index) => (
-              <Circle
-                key={index}
-                translateX={CENTER_POINTS[input].x}
-                translateY={CENTER_POINTS[input].y}
-                backgroundColor="#005eb8"
-              />
-            ))}
+            {renderCircle(userInputs, Circle)}
+            {renderCircle(AIInputs, Cross)}
           </View>
         </TouchableWithoutFeedback>
       </View>
