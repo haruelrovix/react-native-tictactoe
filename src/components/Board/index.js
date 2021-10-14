@@ -6,8 +6,21 @@ import {
   View,
 } from 'react-native';
 
-import { AREAS, CENTER_POINTS, GAME_RESULT_NO } from '../../constants/game';
+import {
+  AREAS,
+  CENTER_POINTS,
+  CONDITIONS,
+  GAME_RESULT_AI,
+  GAME_RESULT_NO,
+  GAME_RESULT_TIE,
+  GAME_RESULT_USER,
+} from '../../constants/game';
 import Circle from '../Circle';
+
+const isWinner = inputs =>
+  CONDITIONS.some(condition =>
+    condition.every(item => inputs.indexOf(item) !== -1),
+  );
 
 const Board = () => {
   const [userInputs, setUserInputs] = useState([]);
@@ -39,6 +52,31 @@ const Board = () => {
   };
 
   console.log({ userInputs });
+
+  const findTheWinner = () => {
+    const inputs = [...userInputs, ...AIInputs];
+
+    if (inputs.length >= 5) {
+      let res = isWinner(userInputs);
+      if (res && result !== GAME_RESULT_USER) {
+        setResult(GAME_RESULT_USER);
+        return;
+      }
+
+      res = isWinner(AIInputs);
+      if (res && result !== GAME_RESULT_AI) {
+        setResult(GAME_RESULT_AI);
+      }
+    }
+
+    if (
+      inputs.length === 9 &&
+      result === GAME_RESULT_NO &&
+      result !== GAME_RESULT_TIE
+    ) {
+      setResult(GAME_RESULT_TIE);
+    }
+  };
 
   return (
     <SafeAreaView>

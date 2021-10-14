@@ -22,4 +22,18 @@ export const AREAS = [
   { startX: 209, startY: 209, endX: 309, endY: 309, id: 8 },
 ];
 
+export const CONDITIONS = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+
 export const GAME_RESULT_NO = -1;
+export const GAME_RESULT_USER = 0;
+export const GAME_RESULT_AI = 1;
+export const GAME_RESULT_TIE = 2;
