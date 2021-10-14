@@ -12,7 +12,6 @@ import {
 import Billboard from '../Billboard';
 import Circle from '../Circle';
 import Cross from '../Cross';
-import Header from '../Header';
 import StartButton from '../StartButton';
 import styles from './styles';
 
@@ -31,9 +30,9 @@ export default class Board extends Component {
   }
 
   handleBoardClick = e => {
-    const { userInputs, AIInputs, result } = this.state;
+    const { userInputs, AIInputs, result, turn } = this.state;
 
-    if (result !== -1) {
+    if (result !== -1 || turn === "It's CPU's turn") {
       return;
     }
 
@@ -133,9 +132,7 @@ export default class Board extends Component {
     const { userInputs, AIInputs, result, turn } = this.state;
 
     return (
-      <SafeAreaView>
         <View style={styles.container}>
-          <Header />
           <TouchableWithoutFeedback onPress={this.handleBoardClick}>
             <View style={styles.boardContainer}>
               <View style={styles.line} />
@@ -149,7 +146,6 @@ export default class Board extends Component {
           <Billboard result={result} turn={turn} />
           <StartButton onPress={this.restartGame} />
         </View>
-      </SafeAreaView>
     );
   }
 }
