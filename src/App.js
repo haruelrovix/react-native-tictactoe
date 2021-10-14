@@ -7,11 +7,21 @@
  */
 
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 
-import Board from './components/Board';
+import Main from './navigation/Main';
+import Store from './store';
 
 const App = () => {
-  return <Board />;
+  return (
+    <React.Fragment>
+      <NavigationContainer>
+        <Store>
+          <Main />
+        </Store>
+      </NavigationContainer>
+    </React.Fragment>
+  );
 };
 
 export default App;

@@ -1,24 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import {
-  GAME_RESULT_USER,
-  GAME_RESULT_AI,
-  GAME_RESULT_TIE,
-} from '../../constants/game';
-
-const getResultText = (result, turn) => {
-  switch (result) {
-    case GAME_RESULT_USER:
-      return 'You won!';
-    case GAME_RESULT_AI:
-      return 'AI won!';
-    case GAME_RESULT_TIE:
-      return 'Tie!';
-    default:
-      return turn;
-  }
-};
+import { getResultText } from '../../utils/getResultText';
 
 const Billboard = ({ result, turn }) => {
   return (

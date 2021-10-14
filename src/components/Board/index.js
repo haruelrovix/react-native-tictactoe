@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 
 import {
   AREAS,
@@ -12,7 +12,7 @@ import {
 import Billboard from '../Billboard';
 import Circle from '../Circle';
 import Cross from '../Cross';
-import Header from '../Header';
+import SaveButton from '../SaveResult';
 import StartButton from '../StartButton';
 import styles from './styles';
 
@@ -31,9 +31,9 @@ export default class Board extends Component {
   }
 
   handleBoardClick = e => {
-    const { userInputs, AIInputs, result } = this.state;
+    const { userInputs, AIInputs, result, turn } = this.state;
 
-    if (result !== -1) {
+    if (result !== -1 || ["It's CPU's turn", 'Welcome!'].includes(turn)) {
       return;
     }
 
@@ -133,23 +133,23 @@ export default class Board extends Component {
     const { userInputs, AIInputs, result, turn } = this.state;
 
     return (
-      <SafeAreaView>
-        <View style={styles.container}>
-          <Header />
-          <TouchableWithoutFeedback onPress={this.handleBoardClick}>
-            <View style={styles.boardContainer}>
-              <View style={styles.line} />
-              <View style={[styles.line, styles.firstLine]} />
-              <View style={[styles.line, styles.secondLine]} />
-              <View style={[styles.line, styles.thirdLine]} />
-              {this.markInput(userInputs, Circle)}
-              {this.markInput(AIInputs, Cross)}
-            </View>
-          </TouchableWithoutFeedback>
-          <Billboard result={result} turn={turn} />
+      <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={this.handleBoardClick}>
+          <View style={styles.boardContainer}>
+            <View style={styles.line} />
+            <View style={[styles.line, styles.firstLine]} />
+            <View style={[styles.line, styles.secondLine]} />
+            <View style={[styles.line, styles.thirdLine]} />
+            {this.markInput(userInputs, Circle)}
+            {this.markInput(AIInputs, Cross)}
+          </View>
+        </TouchableWithoutFeedback>
+        <Billboard result={result} turn={turn} />
+        <View style={styles.buttons(result === GAME_RESULT_NO)}>
+          {result !== GAME_RESULT_NO && <SaveButton result={result} />}
           <StartButton onPress={this.restartGame} />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
