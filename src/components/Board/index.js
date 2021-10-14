@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -19,6 +18,7 @@ import Circle from '../Circle';
 import Cross from '../Cross';
 import Header from '../Header';
 import StartButton from '../StartButton';
+import styles from './styles';
 
 import { isWinner } from '../../utils/checkWinner';
 
@@ -143,36 +143,9 @@ export default class Board extends Component {
           <TouchableWithoutFeedback onPress={this.handleBoardClick}>
             <View style={styles.boardContainer}>
               <View style={styles.line} />
-              <View
-                style={[
-                  styles.line,
-                  {
-                    width: 3,
-                    height: 306,
-                    transform: [{ translateX: 200 }],
-                  },
-                ]}
-              />
-              <View
-                style={[
-                  styles.line,
-                  {
-                    width: 306,
-                    height: 3,
-                    transform: [{ translateY: 100 }],
-                  },
-                ]}
-              />
-              <View
-                style={[
-                  styles.line,
-                  {
-                    width: 306,
-                    height: 3,
-                    transform: [{ translateY: 200 }],
-                  },
-                ]}
-              />
+              <View style={[styles.line, styles.firstLine]} />
+              <View style={[styles.line, styles.secondLine]} />
+              <View style={[styles.line, styles.thirdLine]} />
               {this.markInput(userInputs, Circle)}
               {this.markInput(AIInputs, Cross)}
             </View>
@@ -184,22 +157,3 @@ export default class Board extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  boardContainer: {
-    borderWidth: 3,
-    height: 312,
-    width: 312,
-  },
-  line: {
-    backgroundColor: '#000',
-    height: 306,
-    width: 3,
-    position: 'absolute',
-    transform: [{ translateX: 100 }],
-  },
-});
