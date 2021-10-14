@@ -18,6 +18,7 @@ import {
 import Billboard from '../Billboard';
 import Circle from '../Circle';
 import Cross from '../Cross';
+import StartButton from '../StartButton';
 
 const isWinner = inputs =>
   CONDITIONS.some(condition =>
@@ -27,6 +28,7 @@ const isWinner = inputs =>
 export default class Board extends Component {
   constructor() {
     super();
+
     this.state = {
       AIInputs: [],
       userInputs: [],
@@ -108,6 +110,14 @@ export default class Board extends Component {
     }
   };
 
+  restartGame = () => {
+    this.setState({
+      AIInputs: [],
+      userInputs: [],
+      result: GAME_RESULT_NO,
+    });
+  };
+
   markInput = (inputs, Comp) => {
     return inputs.map((input, index) => (
       <Comp
@@ -163,6 +173,7 @@ export default class Board extends Component {
             </View>
           </TouchableWithoutFeedback>
           <Billboard result={result} />
+          <StartButton onPress={this.restartGame} />
         </View>
       </SafeAreaView>
     );
