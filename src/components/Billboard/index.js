@@ -7,7 +7,7 @@ import {
   GAME_RESULT_TIE,
 } from '../../constants/game';
 
-const getResultText = result => {
+const getResultText = (result, turn) => {
   switch (result) {
     case GAME_RESULT_USER:
       return 'You won!';
@@ -16,14 +16,14 @@ const getResultText = result => {
     case GAME_RESULT_TIE:
       return 'Tie!';
     default:
-      return '';
+      return turn;
   }
 };
 
-const Billboard = ({ result }) => {
+const Billboard = ({ result, turn }) => {
   return (
     <View>
-      <Text style={styles.text}>{getResultText(result)}</Text>
+      <Text style={styles.text}>{getResultText(result, turn)}</Text>
     </View>
   );
 };

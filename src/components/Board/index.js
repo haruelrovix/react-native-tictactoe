@@ -34,6 +34,7 @@ export default class Board extends Component {
       AIInputs: [],
       userInputs: [],
       result: GAME_RESULT_NO,
+      turn: 'Welcome!',
     };
   }
 
@@ -56,12 +57,15 @@ export default class Board extends Component {
     );
 
     if (area && inputs.every(location => location !== area.id)) {
-      this.setState({ userInputs: [...userInputs, area.id] });
+      this.setState({
+        userInputs: [...userInputs, area.id],
+        turn: "It's CPU's turn",
+      });
 
       setTimeout(() => {
         this.findTheWinner();
         this.runEnemyMove();
-      }, 5);
+      }, 2000);
     }
   };
 
@@ -102,8 +106,10 @@ export default class Board extends Component {
       const randomNumber = Math.round(Math.random() * 8.3);
 
       if (inputs.every(input => input !== randomNumber)) {
-        // setAIInputs([...AIInputs, randomNumber]);
-        this.setState({ AIInputs: [...AIInputs, randomNumber] });
+        this.setState({
+          AIInputs: [...AIInputs, randomNumber],
+          turn: "It's your turn",
+        });
 
         this.findTheWinner();
         break;
@@ -116,6 +122,7 @@ export default class Board extends Component {
       AIInputs: [],
       userInputs: [],
       result: GAME_RESULT_NO,
+      turn: "It's your turn",
     });
   };
 
@@ -131,13 +138,15 @@ export default class Board extends Component {
   };
 
   render() {
-    const { userInputs, AIInputs, result } = this.state;
+    const { userInputs, AIInputs, result, turn } = this.state;
 
     return (
       <SafeAreaView>
         <View style={styles.container}>
           <View style={{ marginBottom: 20 }}>
-            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Tic Tac Toe!</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>
+              Tic Tac Toe!
+            </Text>
           </View>
           <TouchableWithoutFeedback onPress={this.handleBoardClick}>
             <View style={styles.boardContainer}>
@@ -176,7 +185,7 @@ export default class Board extends Component {
               {this.markInput(AIInputs, Cross)}
             </View>
           </TouchableWithoutFeedback>
-          <Billboard result={result} />
+          <Billboard result={result} turn={turn} />
           <StartButton onPress={this.restartGame} />
         </View>
       </SafeAreaView>
