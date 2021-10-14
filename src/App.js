@@ -9,7 +9,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { Main } from './navigation/Main';
+import Main from './navigation/Main';
 
 const App = () => {
   return (

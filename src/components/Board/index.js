@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, TouchableWithoutFeedback, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 
 import {
   AREAS,
