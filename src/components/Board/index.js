@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -135,6 +136,9 @@ export default class Board extends Component {
     return (
       <SafeAreaView>
         <View style={styles.container}>
+          <View style={{ marginBottom: 20 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Tic Tac Toe!</Text>
+          </View>
           <TouchableWithoutFeedback onPress={this.handleBoardClick}>
             <View style={styles.boardContainer}>
               <View style={styles.line} />
