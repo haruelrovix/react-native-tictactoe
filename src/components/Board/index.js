@@ -18,11 +18,6 @@ import {
 import Circle from '../Circle';
 import Cross from '../Cross';
 
-const isWinner = inputs =>
-  CONDITIONS.some(condition =>
-    condition.every(item => inputs.indexOf(item) !== -1),
-  );
-
 const Board = () => {
   const [userInputs, setUserInputs] = useState([]);
   const [AIInputs, setAIInputs] = useState([]);
@@ -31,7 +26,7 @@ const Board = () => {
   const handleBoardClick = e => {
     const { locationX, locationY } = e.nativeEvent;
 
-    if (result !== GAME_RESULT_NO) {
+    if (result !== -1) {
       return;
     }
 
@@ -45,19 +40,19 @@ const Board = () => {
         locationY <= location.endY,
     );
 
-    console.log({ area });
-
     if (area && inputs.every(location => location !== area.id)) {
       setUserInputs([...userInputs, area.id]);
       setTimeout(() => {
         findTheWinner();
         runEnemyMove();
-      }, 3);
+      }, 1000);
     }
   };
 
-  console.log({ userInputs });
-  console.log({ AIInputs });
+  const isWinner = inputs =>
+    CONDITIONS.some(condition =>
+      condition.every(item => inputs.indexOf(item) !== -1),
+    );
 
   const findTheWinner = () => {
     const inputs = [...userInputs, ...AIInputs];
@@ -72,6 +67,7 @@ const Board = () => {
       res = isWinner(AIInputs);
       if (res && result !== GAME_RESULT_AI) {
         setResult(GAME_RESULT_AI);
+        return;
       }
     }
 
@@ -92,8 +88,7 @@ const Board = () => {
     while (true) {
       const inputs = [...userInputs, ...AIInputs];
 
-      const randomNumber = Math.round(Math.random() * 8.3)
-      console.log({ randomNumber });
+      const randomNumber = Math.round(Math.random() * 8.3);
 
       if (inputs.every(input => input !== randomNumber)) {
         setAIInputs([...AIInputs, randomNumber]);
