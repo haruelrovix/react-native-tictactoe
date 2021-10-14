@@ -33,7 +33,7 @@ export default class Board extends Component {
   handleBoardClick = e => {
     const { userInputs, AIInputs, result, turn } = this.state;
 
-    if (result !== -1 || turn === "It's CPU's turn") {
+    if (result !== -1 || ["It's CPU's turn", 'Welcome!'].includes(turn)) {
       return;
     }
 

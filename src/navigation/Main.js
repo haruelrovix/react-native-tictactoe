@@ -1,13 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Board from '../components/Board';
 import { Icon } from 'react-native-elements';
-
-const Placeholder = () => {
-  return <Text>Placeholder</Text>;
-};
+import ScoreBoard from '../components/ScoreBoard';
 
 const BoardIcon = () => {
   return <Icon name="play" type="evilicon" />;
@@ -29,7 +25,7 @@ const MyTabs = () => {
       />
       <Tab.Screen
         name="Score"
-        component={Placeholder}
+        component={ScoreBoard}
         options={{ title: 'Score Board', tabBarIcon: ScoreIcon }}
       />
     </Tab.Navigator>

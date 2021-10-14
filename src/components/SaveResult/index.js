@@ -5,9 +5,7 @@ import { Button } from 'react-native-elements';
 import { Context } from '../../store';
 
 const SaveButton = props => {
-  const [state, dispatch] = useContext(Context);
-
-  console.log({ state });
+  const { dispatch } = useContext(Context);
 
   const saveResult = () => {
     dispatch({
