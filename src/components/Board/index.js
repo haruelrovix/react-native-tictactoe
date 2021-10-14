@@ -1,18 +1,43 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
+
+import { AREAS, GAME_RESULT_NO } from '../../constants/game';
 
 const Board = () => {
-  const [userInputs, setUserInputs] = useState([])
+  const [userInputs, setUserInputs] = useState([]);
+  const [AIInputs, setAIInputs] = useState([]);
+  const [result, setResult] = useState(GAME_RESULT_NO);
 
   const handleBoardClick = e => {
-    const { locationX, locationY } = e.nativeEvent
-    console.log({ locationX })
-    console.log({ locationY })
+    const { locationX, locationY } = e.nativeEvent;
+    console.log({ locationX });
+    console.log({ locationY });
 
-    setUserInputs([...userInputs, { locationX, locationY }])
-  }
+    if (result !== GAME_RESULT_NO) {
+      return;
+    }
 
-  console.log({ userInputs })
+    const inputs = [...userInputs, ...AIInputs];
+
+    const area = AREAS.find(
+      location =>
+        locationX >= location.startX &&
+        locationX <= location.endX &&
+        locationY >= location.startY &&
+        locationY <= location.endY,
+    );
+
+    if (area && inputs.every(location => location !== area.id)) {
+      setUserInputs([...userInputs, area.id]);
+    }
+  };
+
+  console.log({ userInputs });
 
   return (
     <SafeAreaView>
