@@ -1,4 +1,4 @@
-package com.consensys;
+package com.haruelrovix.tictactoe;
 
 import com.facebook.react.ReactActivity;
 
