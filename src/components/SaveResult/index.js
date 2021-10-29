@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 
@@ -6,6 +6,7 @@ import { Context } from '../../store';
 
 const SaveButton = props => {
   const { dispatch } = useContext(Context);
+  const [isDisabled, setButtonDisabled] = useState(false);
 
   const saveResult = () => {
     dispatch({
@@ -15,6 +16,8 @@ const SaveButton = props => {
         savedAt: new Date().toISOString(),
       },
     });
+
+    setButtonDisabled(true);
   };
 
   return (
@@ -23,6 +26,7 @@ const SaveButton = props => {
       buttonStyle={styles.button}
       type="outline"
       onPress={saveResult}
+      disabled={isDisabled}
     />
   );
 };

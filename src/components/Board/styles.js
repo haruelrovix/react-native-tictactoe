@@ -13,25 +13,29 @@ const styles = StyleSheet.create({
   },
   line: {
     backgroundColor: '#000',
-    height: 306,
+    height: 310,
     width: 3,
     position: 'absolute',
     transform: [{ translateX: 100 }],
+    marginTop: -2,
   },
   firstLine: {
     width: 3,
-    height: 306,
+    height: 310,
     transform: [{ translateX: 200 }],
+    marginTop: -2,
   },
   secondLine: {
-    width: 306,
+    width: 310,
     height: 3,
     transform: [{ translateY: 100 }],
+    marginLeft: -2,
   },
   thirdLine: {
-    width: 306,
+    width: 310,
     height: 3,
     transform: [{ translateY: 200 }],
+    marginLeft: -2,
   },
   buttons: isCentered => ({
     width: 312,
