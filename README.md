@@ -1,3 +1,5 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/a64167e5-69f6-4bb7-b723-6ec60ed805b4/branches/master/badge)](https://appcenter.ms)
+
 # react-native-tictactoe
 A Tic Tac Toe game from scratch, using React Native.
 
@@ -17,7 +19,13 @@ yarn
 yarn android
 ```
 
-3. For iOS, run:  
+3. For iOS, install Pod dependencies:
+
+```
+cd ios && pod install
+```
+
+4. Then run:  
 
 ```
 yarn ios
